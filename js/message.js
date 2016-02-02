@@ -5,11 +5,14 @@
 // chrome.extension.onRequest.addListener
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    var message_pay_load      = JSON.parse(request.message_payload);
+    
     //var now = new Date();
     //now = (parseFloat)(now.getTime()) / 1000;
     //trace((String)(now) + request.message_type)
     
+    var message_pay_load = JSON.parse(request.message_payload);
+    
+    //from content script 
     if (typeof sender.tab == "undefined"){
       sender.tab = {id: null, url: null, windowId: null};
     }

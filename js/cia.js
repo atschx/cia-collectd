@@ -3,16 +3,24 @@
  **********************/
 var CIA = {
     init: function(event) {
+        
         console.log("init CIA...");
 
-        //查询google浏览器当前激活的页面
-        chrome.tabs.query({active: true}, function(t){
-            if (CIA.okUrl(t.url)){
-                CIA.preUpdate(t.id);
-            }
+        //query all active tab (cross tabs) 
+        //https://developer.chrome.com/extensions/tabs
+        chrome.tabs.query({active: true}, function(tabs){
+            //fix multi window 
+            for (var i = tabs.length - 1; i >= 0; i--) {
+                var tab = tabs[i];
+                console.log(JSON.stringify(tab));
+                if (CIA.okUrl(tab.url+"")){
+                    CIA.preUpdate(tab.id);
+                }
+            };
         });
 
-        // 通过chrome相关API，获取相应的数据。
+        console.log("CIA init finish.");
+        // chrome api https://developer.chrome.com/extensions/webNavigation
         // chrome.webNavigation.onCompleted.addListener(CIA.webNavigationOnComoleted);
         // chrome.tabs.onUpdated.addListener(CIA.tabsOnUpdate);
         // chrome.tabs.onSelectionChanged.addListener(CIA.updateOnSelectChange);
@@ -20,8 +28,8 @@ var CIA = {
         // chrome.webRequest.onCompleted.addListener(CIA.naviComp, {urls: ["http://*/*", "https://*/*"], "types": ["main_frame"]});
         // chrome.webRequest.onBeforeSendHeaders.addListener(CIA.setHttpHeaders, {urls: ["http://*/*", "https://*/*"]}, ["requestHeaders", "blocking"]);
     },
-    okUrl: function(url){
-        if (url.indexOf("http://") == 0 || url.indexOf("https://") == 0){
+    okUrl: function(taburl){
+        if (taburl.indexOf("http://") == 0 || taburl.indexOf("https://") == 0){
             return true;
         }else{
             return false;
@@ -37,7 +45,6 @@ var CIA = {
 
     },
     preUpdate: function(tabId){
-        trace("preUpdate:")
         chrome.tabs.executeScript(tabId, {file: "js/content/dc.js"});
     },
     update: function(payload){
@@ -52,5 +59,5 @@ var CIA = {
     }
 }
 
-window.addEventListener( "load", function(event) { CIA.init(event); }, false );
-window.addEventListener( "unload", function(event) { CIA.offduty(event); }, false);
+window.addEventListener("load", function(event){CIA.init(event);}, false );
+window.addEventListener("unload", function(event){CIA.offduty(event);}, false);
