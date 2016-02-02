@@ -1,0 +1,34 @@
+{
+   "background": {
+      "page": "html/background.html"
+   },
+   "browser_action": {
+      "default_icon": "images/icon-green.png",
+      "default_title": "CIA Dashboard",
+      "popup": "html/popup.html"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "/js/start.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "js": [ "/js/stop.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "collect the userful user browser data",
+   "homepage_url": "http://cia.im",
+   "icons": {
+      "128": "images/icon-128.png",
+      "48": "images/icon-32.png"
+   },
+   "manifest_version": 2,
+   "minimum_chrome_version": "33",
+   "name": "CIA Collectd",
+   "permissions": [ "webRequestBlocking", "webRequest", "webNavigation", "tabs", "management", "http://*/*", "https://*/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.0",
+   "web_accessible_resources": [ "html/content/toolbar.html", "html/content/javascript_button.html", "html/content/menu.html", "html/content/menupopup.html" ]
+}
