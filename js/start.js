@@ -19,24 +19,14 @@ var CIA_START = {
         console.log("CIA_START go!!")
         CIA_START.registeListener();
     },
-    registeListener: function()
-    {
-        //窗口的滚动事件跟踪
+    registeListener: function(){
+            
+        //滚动事件跟踪
         window.addEventListener("scroll", function(e) {
-            console.log("目前跟踪到："+window.scrollY);
-            // if (window.scrollY>=150) {
-            //     window.scrollTo(window.scrollX, 31);
-            // };
-        //1.创建数据CIA_START数据对象
-        //if (window.scrollY <= 150)
-        // {
-        var _alx_data = { y: window.scrollY};
-        var _alx_data_obj = CIA_START.createRequestData("CIA_START_", _alx_data);
-        chrome.runtime.sendMessage(_alx_data_obj,function() {});
-        //   chrome.extension.sendRequest(_alx_data_obj, function() {});
-        //   //window.scrollTo(window.scrollX, 31);
-        // }
-        
+            //console.log("目前跟踪到："+window.scrollY);   
+            var _alx_data = { y: window.scrollY};
+            var _alx_data_obj = CIA_START.createRequestData("CIA_START_", _alx_data);
+            chrome.runtime.sendMessage(_alx_data_obj,function() {});
         }, false);
 
         //页面开始加载时也需要与后台通讯
