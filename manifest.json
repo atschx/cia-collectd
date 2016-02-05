@@ -29,6 +29,6 @@
    "name": "CIA Collectd",
    "permissions": [ "webRequestBlocking", "webRequest", "webNavigation", "tabs", "management", "http://*/*", "https://*/*" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.0",
+   "version": "1.0.1",
    "web_accessible_resources": [ "html/content/toolbar.html", "html/content/javascript_button.html", "html/content/menu.html", "html/content/menupopup.html" ]
 }
