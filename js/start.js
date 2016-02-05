@@ -1,10 +1,9 @@
 /******************
- * CIA Start *
+ * CIA Start      *
  ******************/
 
 var CIA_START = {
-    createRequestData: function(data_type, data_load)
-    {
+    createRequestData: function(data_type, data_load){
         var _alx_data_payload_in = {
             message_type:     data_type,
             message_payload:  JSON.stringify(data_load)
@@ -29,19 +28,13 @@ var CIA_START = {
             chrome.runtime.sendMessage(_alx_data_obj,function() {});
         }, false);
 
-        //页面开始加载时也需要与后台通讯
-        chrome.extension.onRequest.addListener(
+        //接受来自后端的消息
+        chrome.runtime.onMessage.addListener(
             function(request, sender, sendResponse){
-                var message_pay_load = JSON.parse(request.message_payload);
-                switch(request.message_type){
-                  case "API_SET_API_DATA":
-                    ALX_NS_PH_TB_API_IN.setApiData(message_pay_load);
-                    sendResponse({});
-                    break;
-                  default:
-                    break;
-                }
-          }
+                console.log("request-->"+JSON.stringify(request));
+                console.log("sender-->"+JSON.stringify(sender));
+                console.log("sender-->"+JSON.stringify(sendResponse));
+            }
         );
     },
     data:null

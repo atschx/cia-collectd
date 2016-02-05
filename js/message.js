@@ -1,5 +1,5 @@
 /************
- * onrequest
+ * onMessage
  ***********/
 
 // chrome.extension.onRequest.addListener
@@ -23,7 +23,7 @@ chrome.runtime.onMessage.addListener(
 
     switch(request.message_type){
       case "CIA_START_":
-        console.log("receive:---"+JSON.stringify(message_pay_load));
+        //console.log("receive:---"+JSON.stringify(message_pay_load));
         chrome.browserAction.setPopup({popup: "/html/popup.html"});
         sendResponse({});
         break;

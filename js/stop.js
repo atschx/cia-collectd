@@ -1,15 +1,11 @@
 /******************
- * CIA Stop *
+ *   CIA Stop     *
  ******************/
 
 var CIA_STOP = {
     init:function(){
-        console.log("CIA_STOP init")
-    },
-    go:function(){
-
-    },
-    data:null
+        console.log("CIA_STOP do nothing!")
+    }
 };
 
 CIA_STOP.init();

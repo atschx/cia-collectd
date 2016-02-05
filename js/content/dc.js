@@ -9,5 +9,5 @@
     message_type:     "BACK_DATA_REQUEST",
     message_payload:  JSON.stringify(_cia_data)
   };
-  chrome.runtime.sendMessage( _cia_data_payload,function() {});
+  chrome.runtime.sendMessage(_cia_data_payload,function() {});
 })()
