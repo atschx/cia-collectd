@@ -115,7 +115,7 @@ var CIA = {
 
         $.ajax({
             type: "POST",
-            url: "http://collectd.cia.im/collectd",
+            url: "http://collectd.unx.im/collectd",
             contentType:'application/json; charset=utf-8',
             dataType: 'json',
             //headers: {_uid:$cookieUid, _token:$cookieToken},
